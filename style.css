@@ -8,6 +8,9 @@
   font-weight: 200;
   src: url("https://applesocial.s3.amazonaws.com/assets/styles/fonts/sanfrancisco/sanfranciscodisplay-thin-webfont.woff");
 }
+html {
+  width: 465px;
+}
 
 main {
   background-color: black;
@@ -47,8 +50,6 @@ div {
   font-size: 100px;
   color: #ffffff;
   justify-content: right;
-  margin-right: 40px;
-  white-space: nowrap;
 }
 
 .div2 div,
@@ -68,7 +69,11 @@ div {
 }
 #result {
   position: relative;
-  letter-spacing: 0px;
+  padding: 0px;
+  margin-right: 35px;
+  margin-left: 35px;
+  white-space: nowrap;
+  letter-spacing: 3.5px;
   font-weight: 200;
   border: none;
   background: transparent;
@@ -76,6 +81,7 @@ div {
   color: white;
   font-size: 100px;
   font-family: "San Francisco";
+  text-align: right;
 }
 
 #btn-0 {

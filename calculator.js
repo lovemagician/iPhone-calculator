@@ -31,33 +31,30 @@ const equal = document.getElementById("btn-equal");
 
 let firstNum = "";
 let secondNum = "";
-let tempNum = "";
-
-const resultHandler = () => {
-  let number = result.value;
-  console.log(number + "라라라");
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  ///세자리 마다 콤마찍기 구현 안 됨.....
-  //보이는 주머니 따로 만들기 & 버튼들 클릭으로 바꾸기
-};
+let saveNum = "";
 
 const numberHandler = (event) => {
   const num = event.target.textContent.trim();
-  if (result.value === "0" || firstNum === "") {
-    result.value = num;
-    firstNum += result.value;
-  } else if (result.value.length === 9) {
+  // = 입력 끝난 후 누르는 버튼들은 새롭게 firstNum에 들어갈 수 있게 구현하자
+  if (result.textContent === "0" && firstNum === "") {
+    result.textContent = num;
+    firstNum += num;
+  } else if (firstNum.charAt(firstNum.length - 1) === "+") {
+    result.textContent = num;
+    firstNum += num;
+  } else if (result.textContent.length === 11) {
   } else {
-    tempNum = result.value + num;
-    console.log(tempNum);
-    result.value = tempNum.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    let tempNum = "";
+    tempNum = result.textContent.split(",").join("") + num;
+    result.textContent = tempNum.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     firstNum += num;
   }
   console.log(`퍼스트넘버 :${firstNum}`);
   console.log(`세컨넘버 :${secondNum}`);
+  console.log(`세이브넘버:${saveNum}`);
 };
 const allClear = () => {
-  result.value = "0";
+  result.textContent = "0";
   firstNum = "";
   secondNum = "";
   ///숫자 입력했을때 AC에서 C로 바뀌는거 구현하자
@@ -66,31 +63,44 @@ const allClear = () => {
 const minusOperator = () => {
   console.log("");
 };
-
 const plusOperator = () => {
-  if (firstNum !== "" && secondNum === "") {
-    secondNum = firstNum += "+";
-    firstNum = "";
-  } else if (firstNum !== "" && secondNum !== "") {
-    result.value = eval(secondNum + firstNum);
-    secondNum = result.value + "+";
-    firstNum = "";
-  } else {
-    secondNum = result.value + "+";
+  if (firstNum.charAt(firstNum.length - 1) !== "+" && firstNum !== "") {
+    result.textContent = Number(eval(firstNum.replace("@", "")))
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    firstNum = firstNum.replace("@", "");
+    firstNum += "@+";
   }
   console.log(`퍼스트넘버 :${firstNum}`);
   console.log(`세컨넘버 :${secondNum}`);
 };
-
 const eqaulOperator = () => {
-  if (firstNum !== "" && secondNum !== "") {
-    result.value = eval(secondNum + firstNum);
-    firstNum = "";
+  if (firstNum.search(["@"]) >= 1) {
+    saveNum = firstNum.split("@");
+    saveNum = saveNum[saveNum.length - 1];
+    secondNum = eval(firstNum.replace("@", ""));
+    result.textContent = Number(secondNum)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    secondNum = "";
+    firstNum = firstNum.replace("@", "");
+  } else if (firstNum === "" && result.textContent === "0") {
+  } else {
+    saveNum = firstNum.split("");
+    saveNum = saveNum[saveNum.length - 2] + saveNum[saveNum.length - 1];
+    firstNum += saveNum;
+    secondNum = eval(firstNum.replace("@", ""));
+    result.textContent = Number(secondNum)
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     secondNum = "";
   }
+
+  console.log(`세이브넘버${saveNum}`);
+  console.log(`퍼스트넘버 :${firstNum}`);
+  console.log(`세컨넘버 :${secondNum}`);
 };
 
-result.addEventListener("change", resultHandler);
 num0.addEventListener("click", numberHandler);
 num1.addEventListener("click", numberHandler);
 num2.addEventListener("click", numberHandler);
