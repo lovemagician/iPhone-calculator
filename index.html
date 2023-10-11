@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>계산기</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="css.js"></script>
+  </head>
+  <body>
+    <main>
+      <div class="top">
+        <span id="watch"></span>
+        <div class="top-right">
+          <div><i class="fa-solid fa-signal fa-2xs"></i></div>
+          <div><i class="fa-solid fa-wifi fa-2xs"></i></div>
+          <div><i class="fa-solid fa-battery-full fa-2xs"></i></div>
+        </div>
+      </div>
+      <div class="div1">
+        <input id="result" value="0" dir="rtl" readonly />
+      </div>
+      <div class="div2">
+        <div
+          id="btn-ac"
+          class="gray-btn grayBtnChange"
+          onclick="changeBtn(event)"
+        >
+          AC
+        </div>
+        <div
+          id="btn-plusMinus"
+          class="gray-btn grayBtnChange"
+          onclick="changeBtn(event)"
+        >
+          <sup>+</sup>/<sub>-</sub>
+        </div>
+        <div
+          id="btn-percent"
+          class="gray-btn grayBtnChange"
+          onclick="changeBtn(event)"
+        >
+          %
+        </div>
+        <div
+          id="btn-division"
+          class="orange-btn orangeBtnChange"
+          onclick="changeBtn(event)"
+        >
+          ÷
+        </div>
+      </div>
+      <div class="div3">
+        <div
+          id="btn-7"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          7
+        </div>
+        <div
+          id="btn-8"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          8
+        </div>
+        <div
+          id="btn-9"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          9
+        </div>
+        <div
+          id="btn-multiplication"
+          class="orange-btn orangeBtnChange"
+          onclick="changeBtn(event)"
+        >
+          ×
+        </div>
+      </div>
+      <div class="div4">
+        <div
+          id="btn-4"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          4
+        </div>
+        <div
+          id="btn-5"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          5
+        </div>
+        <div
+          id="btn-6"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          6
+        </div>
+        <div
+          id="btn-minus"
+          class="orange-btn orangeBtnChange"
+          onclick="changeBtn(event)"
+        >
+          -
+        </div>
+      </div>
+      <div class="div5">
+        <div
+          id="btn-1"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          1
+        </div>
+        <div
+          id="btn-2"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          2
+        </div>
+        <div
+          id="btn-3"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          3
+        </div>
+        <div
+          id="btn-plus"
+          class="orange-btn orangeBtnChange"
+          onclick="changeBtn(event)"
+        >
+          +
+        </div>
+      </div>
+      <div class="div6">
+        <div
+          id="btn-0"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          0
+        </div>
+        <div
+          id="btn-dot"
+          class="dark-btn darkBtnChange"
+          onclick="changeBtn(event)"
+        >
+          .
+        </div>
+        <div
+          id="btn-equal"
+          class="orange-btn orangeBtnChange"
+          onclick="changeBtn(event)"
+        >
+          =
+        </div>
+      </div>
+    </main>
+    <script
+      src="https://kit.fontawesome.com/e5d9d9bb0e.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="calculator.js"></script>
+  </body>
+</html>
