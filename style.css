@@ -118,6 +118,11 @@ div {
 .orangeBtnChange {
   transition: 1s;
 }
+.equalBtnChange:hover {
+  background-color: rgba(251, 200, 142);
+  transition-duration: 0.2s;
+}
+
 .orangeBtnChange:hover {
   background-color: rgba(251, 200, 142);
   transition-duration: 0.2s;

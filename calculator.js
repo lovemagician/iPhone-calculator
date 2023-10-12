@@ -69,23 +69,59 @@ const plusOperator = () => {
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     firstNum = firstNum.replace("@", "");
+    firstNum = eval(firstNum);
     firstNum += "@+";
   }
+  console.log(Number(firstNum.charAt(firstNum.length - 1)));
   console.log(`퍼스트넘버 :${firstNum}`);
   console.log(`세컨넘버 :${secondNum}`);
 };
+
 const eqaulOperator = () => {
-  if (firstNum.search(["@"]) >= 1) {
+  if (Number(firstNum.charAt(firstNum.length - 1)) !== NaN && firstNum !== "") {
+    if (firstNum.search(["@"]) >= 1) {
+      saveNum = firstNum.split("@");
+      saveNum = saveNum[saveNum.length - 1];
+      firstNum = firstNum.replace("@", "");
+      secondNum = eval(firstNum);
+      result.textContent = Number(secondNum)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      secondNum = "";
+      firstNum = result.textContent.replace(",", "");
+      console.log("1st if if");
+      //기호가 눌린 상태
+    } else if (firstNum.search(["@"]) === -1) {
+      firstNum += saveNum;
+      secondNum = eval(firstNum);
+      result.textContent = Number(secondNum)
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      secondNum = "";
+      firstNum = result.textContent.replace(",", "");
+      console.log("2nd if if");
+      //= 버튼 누른 후 계산 결과 값 나온 상태
+    }
+  } /*오류발생*/ else if (
+    Number(firstNum.charAt(firstNum.length - 1)) === NaN
+  ) {
     saveNum = firstNum.split("@");
-    saveNum = saveNum[saveNum.length - 1];
-    secondNum = eval(firstNum.replace("@", ""));
+    saveNum = saveNum[saveNum.length - 2];
+    firstNum = firstNum.replace("@", "");
+    firstNum += saveNum;
+    console.log(firstNum);
+    secondNum = eval(firstNum);
     result.textContent = Number(secondNum)
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     secondNum = "";
-    firstNum = firstNum.replace("@", "");
+    firstNum = result.textContent.replace(",", "");
+    console.log("1st else if");
+    //숫자입력 이후 기호 눌린 상태 구현 요망
   } else if (firstNum === "" && result.textContent === "0") {
-  } else {
+    //올클리어 상태
+  }
+  /*else {
     saveNum = firstNum.split("");
     saveNum = saveNum[saveNum.length - 2] + saveNum[saveNum.length - 1];
     firstNum += saveNum;
@@ -94,8 +130,9 @@ const eqaulOperator = () => {
       .toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     secondNum = "";
-  }
+  }*/
 
+  console.log("out");
   console.log(`세이브넘버${saveNum}`);
   console.log(`퍼스트넘버 :${firstNum}`);
   console.log(`세컨넘버 :${secondNum}`);
