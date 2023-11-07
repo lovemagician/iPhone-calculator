@@ -10,6 +10,10 @@
 }
 html {
   width: 465px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 main {
@@ -107,6 +111,7 @@ div {
 .grayBtnChange:hover {
   background-color: rgba(217, 217, 217);
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 .darkBtnChange {
   transition: 1s;
@@ -114,6 +119,7 @@ div {
 .darkBtnChange:hover {
   background-color: rgba(115, 115, 115);
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 .orangeBtnChange {
   transition: 1s;
@@ -121,11 +127,13 @@ div {
 .equalBtnChange:hover {
   background-color: rgba(251, 200, 142);
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 
 .orangeBtnChange:hover {
   background-color: rgba(251, 200, 142);
   transition-duration: 0.2s;
+  cursor: pointer;
 }
 .orangeBtnChange.active {
   background: #fcfcfc;

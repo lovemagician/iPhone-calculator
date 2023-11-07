@@ -42,6 +42,15 @@ const numberHandler = (event) => {
   } else if (firstNum.charAt(firstNum.length - 1) === "+") {
     result.textContent = num;
     firstNum += num;
+  } else if (firstNum.charAt(firstNum.length - 1) === "-") {
+    result.textContent = num;
+    firstNum += num;
+  } else if (firstNum.charAt(firstNum.length - 1) === "*") {
+    result.textContent = num;
+    firstNum += num;
+  } else if (firstNum.charAt(firstNum.length - 1) === "/") {
+    result.textContent = num;
+    firstNum += num;
   } else if (result.textContent.length === 11) {
   } else {
     let tempNum = "";
@@ -49,20 +58,21 @@ const numberHandler = (event) => {
     result.textContent = tempNum.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     firstNum += num;
   }
+  ac.textContent = "C";
   console.log(`퍼스트넘버 :${firstNum}`);
   console.log(`세컨넘버 :${secondNum}`);
   console.log(`세이브넘버:${saveNum}`);
 };
 const allClear = () => {
+  if (ac.textContent === "C") {
+    ac.textContent = "AC";
+  }
   result.textContent = "0";
   firstNum = "";
   secondNum = "";
   ///숫자 입력했을때 AC에서 C로 바뀌는거 구현하자
 };
 
-const minusOperator = () => {
-  console.log("");
-};
 const plusOperator = () => {
   if (firstNum.charAt(firstNum.length - 1) !== "+" && firstNum !== "") {
     result.textContent = Number(eval(firstNum.replace("@", "")))
@@ -76,9 +86,52 @@ const plusOperator = () => {
   console.log(`퍼스트넘버 :${firstNum}`);
   console.log(`세컨넘버 :${secondNum}`);
 };
+const minusOperator = () => {
+  if (firstNum.charAt(firstNum.length - 1) !== "-" && firstNum !== "") {
+    result.textContent = Number(eval(firstNum.replace("@", "")))
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    firstNum = firstNum.replace("@", "");
+    firstNum = eval(firstNum);
+    firstNum += "@-";
+  }
+  console.log(Number(firstNum.charAt(firstNum.length - 1)));
+  console.log(`퍼스트넘버 :${firstNum}`);
+  console.log(`세컨넘버 :${secondNum}`);
+};
+const multiplicationOperator = () => {
+  if (firstNum.charAt(firstNum.length - 1) !== "*" && firstNum !== "") {
+    result.textContent = Number(eval(firstNum.replace("@", "")))
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    firstNum = firstNum.replace("@", "");
+    firstNum = eval(firstNum);
+    firstNum += "@*";
+  }
+  console.log(Number(firstNum.charAt(firstNum.length - 1)));
+  console.log(`퍼스트넘버 :${firstNum}`);
+  console.log(`세컨넘버 :${secondNum}`);
+};
+
+const divisionOperator = () => {
+  if (firstNum.charAt(firstNum.length - 1) !== "/" && firstNum !== "") {
+    result.textContent = Number(eval(firstNum.replace("@", "")))
+      .toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    firstNum = firstNum.replace("@", "");
+    firstNum = eval(firstNum);
+    firstNum += "@/";
+  }
+  console.log(Number(firstNum.charAt(firstNum.length - 1)));
+  console.log(`퍼스트넘버 :${firstNum}`);
+  console.log(`세컨넘버 :${secondNum}`);
+};
 
 const eqaulOperator = () => {
-  if (Number(firstNum.charAt(firstNum.length - 1)) !== NaN && firstNum !== "") {
+  if (
+    typeof Number(firstNum.charAt(firstNum.length - 1)) !== NaN &&
+    firstNum !== ""
+  ) {
     if (firstNum.search(["@"]) >= 1) {
       saveNum = firstNum.split("@");
       saveNum = saveNum[saveNum.length - 1];
@@ -103,7 +156,7 @@ const eqaulOperator = () => {
       //= 버튼 누른 후 계산 결과 값 나온 상태
     }
   } /*오류발생*/ else if (
-    Number(firstNum.charAt(firstNum.length - 1)) === NaN
+    typeof Number(firstNum.charAt(firstNum.length - 1)) === NaN
   ) {
     saveNum = firstNum.split("@");
     saveNum = saveNum[saveNum.length - 2];
@@ -152,3 +205,5 @@ ac.addEventListener("click", allClear);
 plus.addEventListener("click", plusOperator);
 equal.addEventListener("click", eqaulOperator);
 minus.addEventListener("click", minusOperator);
+multiplication.addEventListener("click", multiplicationOperator);
+division.addEventListener("click", divisionOperator);

@@ -8,11 +8,3 @@ function changeBtn(event) {
     }
   });
 }
-/*
-function numAfterEqual(event) {
-  let btn = document.querySelector("#btn-equal");
-  if (event.cureentTarget === btn) {
-    btn.classList.add(".numAfterEqual");
-  }
-}
-*/
